@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 76d60f0ac5fb39846ba9e318d8288420
+timeCreated: 1505454978
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Backstage Pass NF
+  fontNames:
+  - Backstage Pass NF
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

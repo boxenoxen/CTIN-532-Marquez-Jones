@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: bbbd338dce289244a9452e2155c29e3d
+timeCreated: 1505454914
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: ChiTown NF
+  fontNames:
+  - ChiTown NF
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
