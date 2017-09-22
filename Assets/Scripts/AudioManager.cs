@@ -27,8 +27,8 @@ public class AudioManager : MonoBehaviour {
         //}
 	}
 
-    void OnTriggerEnter2D (Collider2D other){
-        if (other.tag == "Left Player"){
+    void OnCollision2D (Collider2D other){
+		if (other.tag == "RP_Head"){
             collisionAudioSource.clip = collisionAudioClip_Kiss;
             collisionAudioSource.Play();
             print("We have kissed!");
