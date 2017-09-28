@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 92feba997d989463ca755c8e5da627df
-timeCreated: 1506045542
+timeCreated: 1506574176
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameAudioSource: {instanceID: 0}
+  - collisionAudioClip_Kiss: {instanceID: 0}
+  - collisionAudioClip_Honk: {instanceID: 0}
+  - playerOneEmote: {instanceID: 0}
+  - playerTwoEmote: {instanceID: 0}
+  - playerOneParticles: {instanceID: 0}
+  - playerTwoParticles: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
