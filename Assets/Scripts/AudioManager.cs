@@ -6,7 +6,10 @@ public class AudioManager : MonoBehaviour {
 
     private GameManager gameManager;
 
-	public AudioSource gameAudioSource;
+	public AudioSource playerOneAudioSource;
+    public AudioSource playerTwoAudioSource;
+    public AudioSource kissAudioSource;
+    public AudioSource honkAudioSource;
 
 	public AudioClip collisionAudioClip_Kiss;
     public AudioClip collisionAudioClip_Honk;
@@ -32,13 +35,19 @@ public class AudioManager : MonoBehaviour {
         //}
 	}
 
-    void OnCollision2D (Collider2D other){
-		if (other.tag == "RP_Head"){
-            gameAudioSource.clip = collisionAudioClip_Kiss;
-            gameAudioSource.Play();
-            print("We have kissed!");
-        }
+    public void PlayKissSound()
+    {
+        kissAudioSource.clip = collisionAudioClip_Kiss;
+        kissAudioSource.Play();
     }
+
+    public void PlayHonkSound()
+    {
+        honkAudioSource.clip = collisionAudioClip_Honk;
+        honkAudioSource.Play();
+    }
+            
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -52,25 +61,36 @@ public class AudioManager : MonoBehaviour {
         {
             PlayerTwoEmote();
         }
+
+        if(!playerOneAudioSource.isPlaying) {
+            playerOneParticles.Stop();
+        }
+
+		if (!playerTwoAudioSource.isPlaying)
+		{
+			playerTwoParticles.Stop();
+		}
     }
 
     private void PlayerOneEmote()
     {
-        gameAudioSource.clip = playerOneEmote;
-        gameAudioSource.Play();
+        playerOneAudioSource.clip = playerOneEmote;
+        playerOneAudioSource.Play();
 
         playerOneParticles.Play();
 
         print("Player One Emotes");
     }
 
-    private void PlayerTwoEmote ()
+    private void PlayerTwoEmote()
     {
-        gameAudioSource.clip = playerTwoEmote;
-        gameAudioSource.Play();
+        playerTwoAudioSource.clip = playerTwoEmote;
+        playerTwoAudioSource.Play();
 
         playerTwoParticles.Play();
 
         print("Player Two Emotes");
     }
+
+   
 }
