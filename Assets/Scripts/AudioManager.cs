@@ -10,11 +10,9 @@ public class AudioManager : MonoBehaviour {
     public AudioSource playerTwoAudioSource;
     public AudioSource kissAudioSource;
     public AudioSource honkAudioSource;
-    public AudioSource whistleAudioSource;
 
 	public AudioClip collisionAudioClip_Kiss;
     public AudioClip collisionAudioClip_Honk;
-    public AudioClip collisionAudioClip_Whistle;
     public AudioClip playerOneEmote;
     public AudioClip playerTwoEmote;
 
@@ -47,12 +45,6 @@ public class AudioManager : MonoBehaviour {
     {
         honkAudioSource.clip = collisionAudioClip_Honk;
         honkAudioSource.Play();
-    }
-
-    public void PlayWhistleSound()
-    {
-        whistleAudioSource.clip = collisionAudioClip_Whistle;
-        whistleAudioSource.Play();
     }
             
 

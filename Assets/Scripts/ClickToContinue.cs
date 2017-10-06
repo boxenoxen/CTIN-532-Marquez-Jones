@@ -17,7 +17,7 @@ public class ClickToContinue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space) && !loadLock) {
+		if (Input.GetMouseButtonDown (0) && !loadLock) {
 			LoadScene ();
 
 		}
