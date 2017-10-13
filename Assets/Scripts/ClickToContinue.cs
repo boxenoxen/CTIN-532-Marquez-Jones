@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ClickToContinue : MonoBehaviour {
 
 	public string scene;
-
+    public float sceneLoadDelay;
 	private bool loadLock;
 
 
@@ -17,11 +17,15 @@ public class ClickToContinue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown("space")) {
-			LoadScene ();
+        if (Input.GetKeyDown("space") && sceneLoadDelay > 0) {
+            Invoke("LoadScene", sceneLoadDelay);
 
 		}
 	}
+
+    public void InvokeLoadScene (){
+        Invoke("LoadScene", sceneLoadDelay); 
+    }
 
 	void LoadScene (){
 		loadLock = true;
