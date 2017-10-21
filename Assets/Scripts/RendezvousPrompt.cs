@@ -56,14 +56,13 @@ public class RendezvousPrompt : MonoBehaviour
         if (timerIsRunning)
         {
             timeSinceRightShift += Time.deltaTime;
-            timeHasRunOut = (timeSinceRightShift > 5f);
+            timeHasRunOut = (timeSinceRightShift > 3f);
         }
 
         if (timeHasRunOut == true)
         {
             rendezvousPrompt.gameObject.SetActive(false);
-
-            gameManager.GetComponent<ClickToContinue>().InvokeLoadScene();
+            //GameManager._gameManagerInstance.InvokeLoadScene("Scene2");
         }
 
     }

@@ -27,15 +27,28 @@ namespace Narrate {
                                  /// <summary>
                                  /// Logs a warning if there are no triggered-by objects and disables this
                                  /// </summary>
+                                 /// 
+                                 /// 
+                                 /// 
+                                 /// 
+        RendezvousPrompt textPrompt;
+        bool isCalled = false;
+
         void Awake() {
             if (triggeredBy == null) {
                 Debug.LogWarning("ProximityNarrationTrigger Warning: " + this.gameObject.name +
                     " has no TriggeredBy object and will never fire unless one is assigned. Disabling script.");
                 this.enabled = false;
             }
+            textPrompt = FindObjectOfType<RendezvousPrompt>();
+
         }
-        void OnEnable() {
-            StartCoroutine(DistanceWatch());
+        void Update() {
+            if (textPrompt.isActiveAndEnabled == false && !isCalled){
+                isCalled = true;
+                StartCoroutine(DistanceWatch());
+            }
+
         }
 
         IEnumerator DistanceWatch() {
