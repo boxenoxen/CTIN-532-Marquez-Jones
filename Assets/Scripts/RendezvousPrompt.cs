@@ -8,6 +8,7 @@ public class RendezvousPrompt : MonoBehaviour
 {
 
     public Text rendezvousPrompt; // Assign in inspector
+    public Text narrationText;
 
     bool isListeningForRightShift = false;
     float howLongToWaitBeforeListening;
@@ -20,9 +21,8 @@ public class RendezvousPrompt : MonoBehaviour
     TimerNarrationTrigger narrationScript;
 
 
-    ClickToContinue continueScript;
     public GameManager gameManager;
-
+    public GameObject rendezvousPoint;
 
 
     void Start()
@@ -36,6 +36,7 @@ public class RendezvousPrompt : MonoBehaviour
         }
         howLongToWaitBeforeListening += narrationScript.time;
         StartCoroutine("CountDown");
+
     }
 
     IEnumerator CountDown()
@@ -47,10 +48,13 @@ public class RendezvousPrompt : MonoBehaviour
     void Update()
     {
 
-        if (isListeningForRightShift && Input.GetKeyDown("right shift"))
+        if (isListeningForRightShift && (Input.GetKeyDown("right shift") || Input.GetKeyDown(KeyCode.E)))
         {
             timerIsRunning = true;
             rendezvousPrompt.gameObject.SetActive(true);
+
+            //sets Narrate subtitle text to false
+            narrationText.gameObject.SetActive(false);
         }
 
         if (timerIsRunning)
@@ -63,8 +67,21 @@ public class RendezvousPrompt : MonoBehaviour
         {
             rendezvousPrompt.gameObject.SetActive(false);
             //GameManager._gameManagerInstance.InvokeLoadScene("Scene2");
+
+            //set Narrate subtitle text to true again
+            narrationText.gameObject.SetActive(true);
+
+            enableRendezvousPoint();
+
         }
 
+    }
+
+    void enableRendezvousPoint ()
+    {
+        //rendezvousPoint = GameObject.FindWithTag("RendezvousPoint");
+
+        rendezvousPoint.SetActive(true);
     }
 
 }

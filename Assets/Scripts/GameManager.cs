@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager _gameManagerInstance = null;
 
 
-    string scene;
+    public string scene;
     public float sceneLoadDelay;
     private bool loadLock;
 
@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour {
             Invoke("LoadScene", sceneLoadDelay);
 
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene("SplashScene");
     }
 
     public void InvokeLoadScene(string sceneToLoad)
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour {
         Invoke("LoadScene", sceneLoadDelay);
     }
 
-    void LoadScene()
+    public void LoadScene()
     {
         loadLock = true;
         //metrics stuff
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(scene);
 
     }
+
 
 
     //public void GameOver() {
