@@ -18,6 +18,9 @@ public class RendezvousPrompt : MonoBehaviour
     float timeSinceRightShift = 0;
     bool timerIsRunning = false;
 
+    private bool playerOneConsents = false;
+    private bool playerTwoConsents = false; 
+
     TimerNarrationTrigger narrationScript;
 
 
@@ -48,7 +51,20 @@ public class RendezvousPrompt : MonoBehaviour
     void Update()
     {
 
-        if (isListeningForRightShift && (Input.GetKeyDown("right shift") || Input.GetKeyDown(KeyCode.E)))
+        //checking to make sure both player have consented
+        if(isListeningForRightShift && Input.GetKeyDown(KeyCode.RightShift))
+        {
+            playerOneConsents = true; 
+        }
+
+        if (isListeningForRightShift && Input.GetKeyDown((KeyCode.E)))
+        {
+            playerTwoConsents = true; 
+        }
+
+
+        //displays prompt to incentivise players to rendezvous point
+        if (isListeningForRightShift && playerOneConsents && playerTwoConsents)
         {
             timerIsRunning = true;
             rendezvousPrompt.gameObject.SetActive(true);

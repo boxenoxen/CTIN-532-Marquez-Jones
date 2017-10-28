@@ -46,7 +46,7 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
     {
         if (playerOneRendezvous && playerTwoRendezvous == true)
         {
-            Debug.Log("rendezvous is functional");
+            //Debug.Log("rendezvous is functional");
 
             gameManager.LoadScene();
         }
