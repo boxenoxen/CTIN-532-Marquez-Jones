@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
     public static GameManager _gameManagerInstance = null;
 
 
-    public string scene;
     public float sceneLoadDelay;
     private bool loadLock;
 
@@ -48,19 +47,19 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene("SplashScene");
     }
 
-    public void InvokeLoadScene(string sceneToLoad)
-    {
-        scene = sceneToLoad;
-        Invoke("LoadScene", sceneLoadDelay);
-    }
-
+    
     public void LoadScene()
     {
         loadLock = true;
         //metrics stuff
-        MetricManagerScript._metricsInstance.LogTime("Scene " + SceneManager.GetActiveScene().name + " Transition:");
-        SceneManager.LoadScene(scene);
+		//Debug.Log(scene);
+		if (MetricManagerScript._metricsInstance != null) {
+			MetricManagerScript._metricsInstance.LogTime ("Scene " + SceneManager.GetActiveScene ().name + " Transition:");
+		}
 
+		if (SceneManager.sceneCountInBuildSettings != SceneManager.GetActiveScene ().buildIndex + 1) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+		}
     }
 
 
