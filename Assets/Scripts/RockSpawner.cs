@@ -5,57 +5,55 @@ using UnityEngine;
 
 public class RockSpawner : MonoBehaviour {
 
-	// Prefab for instantiating apples 
-	public GameObject boulderPrefab; 
+    private GameManager gameManager;
 
-	// Speed at which the AppleTree moves in meters/ second 
-	public float speed = 1f; 
+	public GameObject rockPrefab;
 
-	// Distance where AppleTree turns around 
-	public float leftAndRightEdge = 10f; 
-
-	// Chance that the AppleTree will change directions 
-	public float chanceToChangeDirections = 0.1f; 
-
-	// Rate at which Apples will be instantiated 
-	public float secondsBetweenRockDrops = 1f;
+    public Vector3 spawnValues;
+    public int rockCount;
+    public float spawnWait;
+    public float startWait;
+    public float waveWait;
 
 	// Use this for initialization
 	void Start () {
-		//dropping apples every second
-		InvokeRepeating( "DropRock", 2f, secondsBetweenRockDrops ); 
+
+        StartCoroutine(SpawnNext());
+
+      //GameObject gameManagerObject = GameObject.FindWithTag("GameManger");
+
 	} 
 
-	void DropRock() { 
-		GameObject boulder = Instantiate(boulderPrefab) as GameObject; 
-		boulder.transform.position = transform.position;
 
-	}
+    IEnumerator SpawnNext()
+    {
+        yield return new WaitForSeconds(startWait);
+        while (true)
+        {
+            for (int i = 0; i < rockCount; i++)
+            {
+                GameObject rockPrefabToSpawn = (GameObject)Instantiate(rockPrefab, transform.position, Quaternion.identity);
 
-	// Update is called once per frame
-	void Update () {
-		//basic movement
-		Vector3 pos = transform.position; 
-		pos.x += speed * Time.deltaTime; 
-		transform.position = pos;
+                GameObject newRock = Instantiate(rockPrefabToSpawn, new Vector3(Random.Range(-spawnValues.x, spawnValues.x),spawnValues.y, 0), Quaternion.identity);
 
-		//changing direction
-		if (pos.x < -leftAndRightEdge) { 
-			speed = Mathf.Abs (speed); // Move right 
-		} else if (pos.x > leftAndRightEdge) { 
-			speed = -Mathf.Abs (speed); // Move left 
+                yield return new WaitForSeconds(spawnWait);
+                
+            }
 
-		}
+            yield return new WaitForSeconds(waveWait);
 
-	}
 
-	void FixedUpdate(){
+            if (rockCount > 30)
+            {
+               //estroy();
+            }
+        }
+    }
 
-		//Changing Direction Randomly
-		if (Random.value < chanceToChangeDirections) { 
-			speed *= -1; // Change direction 
-		}
-	}
+    private void Update()
+    {
+      
+    }
 
 
 }
