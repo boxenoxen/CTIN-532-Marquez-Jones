@@ -30,23 +30,23 @@ public class Water : MonoBehaviour {
 		}
 
 		//Handles setting up the trigger correctly
-		BoxCollider col = null;
-		if(GetComponent<BoxCollider>()){
-			col = GetComponent<BoxCollider>();
+		BoxCollider2D col = null;
+		if(GetComponent<BoxCollider2D>()){
+			col = GetComponent<BoxCollider2D>();
 		}
 		else{ //Add box Collider
-			gameObject.AddComponent<BoxCollider>();
-			col = GetComponent<BoxCollider>();
+			gameObject.AddComponent<BoxCollider2D>();
+			col = GetComponent<BoxCollider2D>();
 		}
 
 		if(col != null){
 			col.isTrigger = true; //Force trigger
-			col.size = new Vector3 (1.0f, 0.7f, 1.0f);
+			//col.size = new Vector3 (1.0f, 0.7f, 1.0f);
 		}
 	}
 
-	void OnTriggerStay(Collider other){ 
-		if(other.GetComponent<Rigidbody>()){ 
+	void OnTriggerStay2D(Collider2D other){ 
+		if(other.GetComponent<Rigidbody2D>()){ 
 			if (onlyAffectInteractableItems) {
 				if (other.GetComponent<InteractableItem> ()) {
 					other.GetComponent<Rigidbody> ().AddForce (pressure * transform.up, ForceMode.Impulse);
@@ -54,25 +54,30 @@ public class Water : MonoBehaviour {
 					other.GetComponent<Rigidbody> ().angularDrag = 2.0f;
 				}
 			} else {
-				other.GetComponent<Rigidbody> ().AddForce (pressure * transform.up, ForceMode.Impulse);
-				other.GetComponent<Rigidbody> ().drag = waterDrag;
-				other.GetComponent<Rigidbody> ().angularDrag = 2.0f;
+				Rigidbody2D tempRigidBody2D = other.GetComponent<Rigidbody2D>();
+				tempRigidBody2D.AddForce (pressure * Vector2.up, ForceMode2D.Impulse);
+				tempRigidBody2D.drag = waterDrag;
+				tempRigidBody2D.angularDrag = 2.0f;
+				tempRigidBody2D.gravityScale = 0.1f;
+
 			}
 		}
 		
 	}
 
 	//Note: Reset values can be altered as preferred - values based on Unity defaults
-	void OnTriggerExit(Collider other){
-		if(other.GetComponent<Rigidbody>()){
+	void OnTriggerExit2D(Collider2D other){
+		if(other.GetComponent<Rigidbody2D>()){
 			if (onlyAffectInteractableItems) {
 				if (other.GetComponent<InteractableItem> ()) {
 					other.GetComponent<Rigidbody>().drag = 0.0f; //Reset Drag to zero
 					other.GetComponent<Rigidbody>().angularDrag = 0.05f; //Reset to default 0.05
 				}
 			} else {
-				other.GetComponent<Rigidbody>().drag = 0.0f; //Reset Drag to zero
-				other.GetComponent<Rigidbody>().angularDrag = 0.05f; //Reset to default 0.05
+				Rigidbody2D tempRigidBody2D = other.GetComponent<Rigidbody2D> ();
+				tempRigidBody2D.drag = 0.0f; //Reset Drag to zero
+				tempRigidBody2D.angularDrag = 0.05f; //Reset to default 0.05
+				tempRigidBody2D.gravityScale = 1.1f;
 			}
 		}
 	}
