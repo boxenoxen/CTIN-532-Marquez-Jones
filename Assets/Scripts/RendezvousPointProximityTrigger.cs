@@ -14,10 +14,14 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
 
     public GameManager gameManager;
 
+    public string sceneName;
+
 	// Use this for initialization
 	void Start () 
     {
+        Scene currentScene = SceneManager.GetActiveScene();
 
+        string sceneName = currentScene.name;
 	}
 
     void OnTriggerEnter2D (Collider2D rendezvous)
@@ -46,9 +50,16 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
     {
         if (playerOneRendezvous && playerTwoRendezvous == true)
         {
-            //Debug.Log("rendezvous is functional");
+            ////Debug.Log("rendezvous is functional");
+            //if (sceneName == "Scene3_1")
+            //{
+            //    SceneManager.LoadScene("WinState");
+            //}
 
-            gameManager.LoadScene();
+            //else
+            //{
+                gameManager.LoadScene();
+            //}
         }
     }
 
