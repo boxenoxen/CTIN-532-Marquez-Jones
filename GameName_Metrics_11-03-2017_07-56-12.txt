@@ -1,3 +1,0 @@
-Scene SplashScene Transition:: - Time: 11-03-2017 07:55:13
-Scene Scene1 Transition:: - Time: 11-03-2017 07:55:43
-Scene Scene2 Transition:: - Time: 11-03-2017 07:56:06
