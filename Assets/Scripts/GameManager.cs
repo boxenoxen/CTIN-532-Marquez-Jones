@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
     public float sceneLoadDelay;
     private bool loadLock;
 
+    Scene currentScene;
+    private string sceneName;
+
 	// Use this for initialization
 
     void Awake()
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour {
     }
 
 	void Start () {
-
+        currentScene = SceneManager.GetActiveScene();
         //gameOver = false;
 
 
@@ -37,14 +40,20 @@ public class GameManager : MonoBehaviour {
 
     void Update()
     {
+
         if (Input.GetKeyDown("space") && sceneLoadDelay > 0)
         {
-            Invoke("LoadScene", sceneLoadDelay);
+            if (currentScene.name == "SplashScene")
+            {
+                Invoke("LoadScene", sceneLoadDelay);
 
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
+        {
             SceneManager.LoadScene("SplashScene");
+        }
     }
 
     

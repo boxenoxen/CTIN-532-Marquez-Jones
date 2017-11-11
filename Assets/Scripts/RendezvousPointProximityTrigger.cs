@@ -14,7 +14,7 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
 
     public GameManager gameManager;
 
-    public string sceneName;
+    float timeLeft = 3f;
 
 	// Use this for initialization
 	void Start () 
@@ -28,14 +28,22 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
     {
         if (rendezvous.gameObject.name == "POne_Torso")
         {
-            playerOneRendezvous = true;
+
+            if (timeLeft < 0)
+            {
+                playerOneRendezvous = true;
+            }
 
             print("PlayerOne has Rendezvous'd");
         }
 
         if (rendezvous.gameObject.name == "PTwo_Torso")
         {
-            playerTwoRendezvous = true; 
+
+            if (timeLeft < 0)
+            {
+                playerTwoRendezvous = true; 
+            }
 
             print("PlayerTwo has Rendezvous'd"); 
         }
@@ -48,18 +56,11 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
 
     void Update()
     {
+        timeLeft -= Time.deltaTime;
+
         if (playerOneRendezvous && playerTwoRendezvous == true)
         {
-            ////Debug.Log("rendezvous is functional");
-            //if (sceneName == "Scene3_1")
-            //{
-            //    SceneManager.LoadScene("WinState");
-            //}
-
-            //else
-            //{
                 gameManager.LoadScene();
-            //}
         }
     }
 
