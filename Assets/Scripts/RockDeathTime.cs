@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RockDeathTime : MonoBehaviour {
-	float _rockDeathTime = 12.0f;
+	float _rockDeathTime = 14.0f;
 
 	void Start () {
 		StartCoroutine (DeathCountDown ());		
