@@ -33,8 +33,7 @@ public class WavePrefabSpawner : MonoBehaviour {
             for (int i = 0; i < waveCount; i++)
             {
                 //SPAWNING WAVES
-                int planetIndex = Random.Range(0, planetPrefabs.Length);
-                GameObject planetPrefabToSpawn = planetPrefabs[planetIndex];
+                GameObject planetPrefabToSpawn = wavePrefab;
 
                 //SETTING POSITION
                 GameObject newPlanet = Instantiate(planetPrefabToSpawn, new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y), spawnValues.z), Quaternion.identity);
@@ -47,11 +46,6 @@ public class WavePrefabSpawner : MonoBehaviour {
             }
 
             yield return new WaitForSeconds(waveWait);
-
-            if (gameOver)
-            {
-                break;
-            }
 
         }
     }
