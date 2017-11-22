@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WavePrefabMovement : MonoBehaviour {
 
+    //public float minXRange;
+   // public float maxXRange;
 
     float rangeX;
     Vector3 velocity;
@@ -16,7 +18,6 @@ public class WavePrefabMovement : MonoBehaviour {
 
     public void SettingVelocity()
     {
-        rangeX = Random.Range(-0.2f, -0.06f);
 
         velocity = new Vector3(rangeX, 0f, 0f);
 
@@ -24,6 +25,8 @@ public class WavePrefabMovement : MonoBehaviour {
 
     void Update()
     {
+        rangeX = Random.Range(-.75f, .75f);
+
         transform.Translate(velocity);
     }
 

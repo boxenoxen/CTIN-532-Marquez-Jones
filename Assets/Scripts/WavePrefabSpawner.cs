@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WavePrefabSpawner : MonoBehaviour {
 
-    public GameObject wavePrefab;
+    public GameObject[] wavePrefabs;
 
     public Vector3 spawnValues;
     public int waveCount;
@@ -33,7 +33,10 @@ public class WavePrefabSpawner : MonoBehaviour {
             for (int i = 0; i < waveCount; i++)
             {
                 //SPAWNING WAVES
-                GameObject wavePrefabToSpawn = wavePrefab;
+                // GameObject wavePrefabToSpawn = wavePrefabs;
+
+                int waveIndex = Random.Range(0, wavePrefabs.Length);
+                GameObject wavePrefabToSpawn = wavePrefabs[waveIndex];
 
                 //SETTING POSITION
                 GameObject newWave = Instantiate(wavePrefabToSpawn, new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y), spawnValues.z), Quaternion.identity);
