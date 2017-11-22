@@ -33,16 +33,16 @@ public class WavePrefabSpawner : MonoBehaviour {
             for (int i = 0; i < waveCount; i++)
             {
                 //SPAWNING WAVES
-                GameObject planetPrefabToSpawn = wavePrefab;
+                GameObject wavePrefabToSpawn = wavePrefab;
 
                 //SETTING POSITION
-                GameObject newPlanet = Instantiate(planetPrefabToSpawn, new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y), spawnValues.z), Quaternion.identity);
+                GameObject newWave = Instantiate(wavePrefabToSpawn, new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y), spawnValues.z), Quaternion.identity);
 
                 //Quaternion spawnRotation = Quaternion.identity;
                 yield return new WaitForSeconds(spawnWait);
 
-                //SETTING SPEED FOR PLANETS
-                newPlanet.GetComponent<WavePrefabMovement>().SettingVelocity();
+                //SETTING SPEED FOR WAVES
+                newWave.GetComponent<WavePrefabMovement>().SettingVelocity();
             }
 
             yield return new WaitForSeconds(waveWait);
