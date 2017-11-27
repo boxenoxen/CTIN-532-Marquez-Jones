@@ -14,7 +14,7 @@ public class RendezvousPointProximityTrigger : MonoBehaviour {
 
     public GameManager gameManager;
 
-    float timeLeft = 3f;
+    float timeLeft = 2f;
 
 	// Use this for initialization
 	void Start () 
